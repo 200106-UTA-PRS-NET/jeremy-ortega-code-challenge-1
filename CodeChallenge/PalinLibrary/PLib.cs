@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace PalinLibrary
 {
@@ -7,12 +9,22 @@ namespace PalinLibrary
 
         public bool palendromeCheck(String palendrome)
         {
+            palendrome = palendrome.ToLower();
             char[] str = palendrome.ToCharArray();
 
-            for (int i = 0; i < str.Length; i++) {
-                if (str[i] != str[str.Length-1-i])
+            ArrayList charArr = new ArrayList();
+
+            foreach(char c in str)
+            {
+                if (c != ' ' && c != ',' && c!='.')
                 {
-                    Console.WriteLine("Not a palendrome");
+                    charArr.Add(c);
+                }
+            }
+
+            for (int i = 0; i < charArr.Count; i++) {
+                if (!charArr[i].Equals(charArr[charArr.Count-1-i]))
+                {
                     return false;
                 }
             }
